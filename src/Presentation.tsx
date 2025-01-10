@@ -10,7 +10,7 @@ import {
 } from '@mantine/core';
 import {useHotkeys} from '@mantine/hooks';
 import {parsePagesFromDocument} from './parsePages';
-import {ReactNode, useEffect, useState, MouseEvent} from 'react';
+import {ReactNode, useEffect, useState} from 'react';
 import {ColorSchemeSelector} from './ColorSchemeSelector.tsx';
 import {nprogress} from '@mantine/nprogress';
 import hljs from 'highlight.js';
@@ -49,7 +49,7 @@ function useHighlightJsTheme() {
 }
 
 // Подкомпонент: титульный слайд (type: 'title')
-function TitleSlide({page}) {
+function TitleSlide({page} : {page: any}) {
   return (
     <Center h="100%">
       <Title fz={80}>{page.title}</Title>
@@ -58,7 +58,7 @@ function TitleSlide({page}) {
 }
 
 // Подкомпонент: слайд с параграфами/списками (type: 'htmlGroup')
-function HtmlGroupSlide({page}) {
+function HtmlGroupSlide({page} : {page: any}) {
   const colorScheme = useHighlightJsTheme();
 
   useEffect(() => {
@@ -99,7 +99,7 @@ function HtmlGroupSlide({page}) {
 }
 
 // Подкомпонент: изображение (type: 'image')
-function ImageSlide({page}) {
+function ImageSlide({page} : {page: any}) {
   useHighlightJsTheme(); // Чтобы темизация обновлялась, если нужно
 
   return (
@@ -121,7 +121,7 @@ function ImageSlide({page}) {
 }
 
 // Подкомпонент: таблица (type: 'table')
-function TableSlide({page}) {
+function TableSlide({page} : {page: any}) {
   useHighlightJsTheme(); // Аналогично, чтобы при переключении темы таблица не ломалась
 
   return (
@@ -137,7 +137,7 @@ function TableSlide({page}) {
 }
 
 // Главный компонент, переключающий слайды по типу
-function SlideRenderer({page}) {
+function SlideRenderer({page} : {page: any}) {
   switch (page.type) {
     case 'title':
       return <TitleSlide page={page}/>;

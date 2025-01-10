@@ -1,5 +1,5 @@
 // parsePagesFromDocument.js
-
+// @ts-nocheck
 const CHARS_PER_LINE = 80;
 const MIN_LINES = 7;
 const MAX_LINES = 15;

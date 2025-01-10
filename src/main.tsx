@@ -6,16 +6,19 @@ import {IconPresentation} from "@tabler/icons-react";
 import {Presentation} from "./Presentation.tsx";
 import {useState} from "react";
 import {useHotkeys} from "@mantine/hooks";
-import {NavigationProgress} from "@mantine/nprogress";
 
-const pageWrapperDisplay = document.getElementById('page-wrapper').style.display;
+const pageWrapperDisplay = document.getElementById('page-wrapper')?.style.display;
 
 export const App = () => {
   const [active, setActive] = useState(false);
 
   const toggleActive = () => {
     setActive(!active);
-    document.getElementById('page-wrapper').style.display = active ? pageWrapperDisplay : 'none';
+    const wrapperElement = document.getElementById('page-wrapper');
+    if (wrapperElement) {
+      wrapperElement.style.display = active && pageWrapperDisplay ? pageWrapperDisplay : 'none';
+    }
+
   };
 
   useHotkeys([['Escape', toggleActive]]);
